@@ -21,6 +21,6 @@ app.use("/admin", adminRoute);
 
 
 
-app.listen(8000, ()=>{
+app.listen(port, ()=>{
     console.log("Server run on 8000 port!");
 })
