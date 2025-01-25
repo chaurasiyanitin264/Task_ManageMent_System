@@ -13,9 +13,14 @@ app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 
 
-mongoose.connect(MNDB).then(()=>{
-    console.log("DB connected!");
-})
+mongoose
+  .connect(MNDB)
+  .then(() => {
+    console.log("DB Connected!!!");
+  })
+  .catch((err) => {
+    console.error("DB Connection Error:", err);
+  });
 
 app.use("/admin", adminRoute);
 
