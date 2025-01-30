@@ -54,10 +54,11 @@ const AssignTask = () => {
     useEffect(() => {
         loadData();
     }, []);
-
+    let sno=1;
     const ans = mydata.map((key) => {
         return (
             <tr key={key.id}>
+                <td>{sno++}</td>
                 <td>{key.name}</td>
                 <td>{key.email}</td>
                 <td>{key.designation}</td>
@@ -72,8 +73,9 @@ const AssignTask = () => {
     return (
         <div className="card p-4 shadow-custom">
             <Table  striped bordered hover >
-                <thead class="table-secondary">
+                <thead class="table-primary">
                     <tr>
+                        <th></th>
                         <th>Emp Name</th>
                         <th>Emp Email</th>
                         <th>Designation</th>

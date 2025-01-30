@@ -48,7 +48,19 @@ const UserTaskdisplay = async (req, res) => {
         console.log(error)
     }
 }
+const UserTaskSubmit=async(req,res)=>{
+    console.log(req.body);
+    const { taskid, taskstatus }=req.body;
+    try {
+        const TaskSubmit=await taskModel.findByIdAndUpdate(taskid,{taskstatus:taskstatus,empreport:"submited"});
+        res.status(200).send("Task Successfully submited!");
+    } catch (error) {
+        console.log(error)
+    }
+  
+}
 module.exports = {
     userLogin,
-    UserTaskdisplay
+    UserTaskdisplay,
+    UserTaskSubmit
 }

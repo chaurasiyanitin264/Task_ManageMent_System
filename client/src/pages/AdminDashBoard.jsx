@@ -23,7 +23,7 @@ const DashBoard = () => {
         <>
             <div id="div" className="card p-4 shadow-custom"
              style={{ border:"1px solid #4ca1af",}}>
-                welcome:{adminName}
+                welcome:{adminName} (Admin)
                 {/* {userID} */}
                 <center>
                     <Button style={{ width: "150px" }} variant="primary" onClick={logout}>Logout</Button>

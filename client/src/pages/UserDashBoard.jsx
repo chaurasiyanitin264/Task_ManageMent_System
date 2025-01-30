@@ -25,7 +25,7 @@ const UserDashBoard = () => {
             <div id="div" className="card p-4 shadow-custom"
              style={{ border:"1px solid #4ca1af",}}>
                 welcome:{userName} <br />
-                Email:{useremail}
+                Email:{useremail}(User)
                 {/* {userID} */}
                 <center>
                     <Button style={{ width: "150px" }} variant="primary" onClick={logout}>Logout</Button>

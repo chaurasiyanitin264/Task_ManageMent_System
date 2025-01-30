@@ -4,4 +4,5 @@ const UserController=require("../controller/userController")
 route.post("/userlogin",UserController.userLogin);
 // route.get("/usertaskdisplay",UserController.UserTaskdisplay)
 route.post("/usertaskdisplay",UserController.UserTaskdisplay)
+route.post("/usertasksubmit",UserController.UserTaskSubmit);
 module.exports=route;

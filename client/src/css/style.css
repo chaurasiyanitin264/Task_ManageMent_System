@@ -1,4 +1,6 @@
-
+body {
+    font-family: Garamond, serif;
+  }
 #color {
     background:#4ca1af; 
     margin: 0px;

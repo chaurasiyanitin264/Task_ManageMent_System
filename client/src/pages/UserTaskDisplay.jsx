@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
+import Button from "react-bootstrap/Button";
+import Form from 'react-bootstrap/Form';
 const UserTaskDisplay = () => {
     // const [mydata, setMydata] = useState([]);
     const [mydata, setMydata] = useState([]);
+    const [taskStatus, setTaskStatus] = useState("");
     const loadData = async () => {
        
         // try {
@@ -41,16 +44,41 @@ try {
         loadData();
     }, []);
 
-    // console.log(mydata)
+    const taskSubmit=async(taskid)=>{
+    try {
+        let api="http://localhost:8000/user/usertasksubmit";
+        const response=await axios.post(api,{taskid:taskid,taskstatus:taskStatus});
+        // console.log(response.data)
+        alert(response.data);
+        loadData();
+    } catch (error) {
+        console.log(error)
+    }
+    }
 
+    // console.log(mydata)
+    let sno=1;
     const ans = mydata.map((key) => {
         return (
+           
             <>
+            
                 <tr>
-                {/* <td>{key.empid}</td> */}
+                <td>{sno++}</td>
                     <td>{key.title}</td>
                     <td>{key.description}</td>
                     <td>{key.duration}</td>
+                    <td>
+            <Form.Select size="sm" name="taskStatus" value={taskStatus} onChange={(e)=>{setTaskStatus(e.target.value)}}>
+               <option value="Fully Completed">Fully Completed</option>
+               <option value="Partial Completed">Partial Completed</option>
+               <option value="No Completed">No Completed</option>
+            </Form.Select>
+             </td>
+            <td> 
+             {key.empreport=="submited"?(<Button disabled>submitted</Button>):(<Button onClick={()=>{taskSubmit(key._id)}}>Send</Button>)}  
+        
+            </td>
                 </tr>
             </>
         )
@@ -63,11 +91,12 @@ try {
                 <Table striped bordered hover >
                     <thead class="table-secondary">
                         <tr>
-                            {/* <th></th> */}
+                            <th></th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Duration</th>
-
+                            <th> Status</th>
+                            <th> Send Report</th>
                         </tr>
                     </thead>
                     <tbody>
