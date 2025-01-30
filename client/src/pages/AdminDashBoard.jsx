@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import React from "react";
+import { message } from "antd";
+
 
 const DashBoard = () => {
     const [adminName, setAdminName] = useState("");
-    const [userID, setUserID] = useState("");
+    // const [userID, setUserID] = useState("");
     const navigate = useNavigate();
     useEffect(() => {
         setAdminName(localStorage.getItem("adminName"))
@@ -16,29 +16,39 @@ const DashBoard = () => {
     }, []);
     const logout = () => {
         localStorage.clear();
+        message.success("Logout!!!")
         navigate("/home");
     }
     return (
         <>
-            <div id="div">
-                welcome:{adminName} ,
+            <div id="div" className="card p-4 shadow-custom"
+             style={{ border:"1px solid #4ca1af",}}>
+                welcome:{adminName}
                 {/* {userID} */}
-                {/* <button onClick={logout}>Logout</button> */}
-                <Button variant="primary" onClick={logout}>Logout</Button>
+                <center>
+                    <Button style={{ width: "150px" }} variant="primary" onClick={logout}>Logout</Button>
+                    
+                </center>
+
             </div>
 
             <div id='div1'>
                 <div id="div2">
                     {/* <Link to="createuser">CreateUser</Link> */}
-                    <Navbar bg="primary" data-bs-theme="light">
-                        <Container>
-                            <Nav className="me-auto">
-                                <Nav.Link as={Link} to="createuser" className="text-white">
-                                    CreateUser
-                                </Nav.Link>
-                            </Nav>
-                        </Container>
-                    </Navbar>
+                    <aside>
+                        <nav className="navbar">
+                            <div className="container">
+                                <div className="nav-links" >
+                                    <Link to="createuser" className="nav-link" id="create">
+                                        Create User
+                                    </Link>
+                                    <Link to="assigntask" className="nav-link" id="create1">
+                                        Assign Task
+                                    </Link>
+                                </div>
+                            </div>
+                        </nav>
+                    </aside>
                 </div>
                 <div id="div3">
                     <Outlet />

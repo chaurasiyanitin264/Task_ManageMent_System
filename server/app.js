@@ -4,6 +4,7 @@ const cors= require("cors");
 const mongoose=require("mongoose");
 require("dotenv").config();
 const adminRoute= require("./routes/adminRoutes");
+const userRoute=require("./routes/userRoutes");
 const bodyparser = require('body-parser');
 const port =process.env.PORT ||8000;
 const MNDB=process.env.MGCONN;
@@ -23,7 +24,7 @@ mongoose
   });
 
 app.use("/admin", adminRoute);
-
+app.use("/user", userRoute);
 
 
 app.listen(port, ()=>{

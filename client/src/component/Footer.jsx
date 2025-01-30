@@ -11,7 +11,8 @@ const Footer = () => {
     <MDBFooter
       className="text-center text-white"
       style={{
-        background: 'linear-gradient(90deg, #007bff, #6c63ff)'
+        background: '#4ca1af',
+        margin: '10px',
       }}
     >
       <MDBContainer className="p-4 pb-0">
@@ -19,7 +20,7 @@ const Footer = () => {
           <MDBBtn
             floating
             className="m-1"
-            style={{ backgroundColor: '#3b5998' }}
+            style={{  backgroundColor: '#55acee'  }}
             href="#!"
             role="button"
           >

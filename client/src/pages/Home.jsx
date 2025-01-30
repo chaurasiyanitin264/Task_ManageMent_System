@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Card, InputGroup } from "react-bootstrap";
 import axios from "axios";
 import {message} from "antd";
+
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [userid, setUserId] = useState("");
@@ -22,11 +23,32 @@ const Home = () => {
               localStorage.setItem("adminName",response.data.username);
               localStorage.setItem("userID",response.data.userid);
               message.success("Login Succesfully!");
+            
               navigate("/dashboard")
             }
            } catch (error) {
             message.error(error.response.data.msg);
            }
+      }
+      else{
+        if(usertype=="user")
+        {
+          try {
+            let api="http://localhost:8000/user/userlogin";
+            const response=await axios.post(api,{userid:userid,password:password});
+            // console.log(response.data)
+           if(response.status==200)
+           {
+            message.success("User Login");
+            localStorage.setItem("username",response.data.name);
+            localStorage.setItem("useremail",response.data.email);
+            localStorage.setItem("userid",response.data._id);
+            navigate("/userdashboard")
+           }
+          } catch (error) {
+            message.error(error.response.data.msg)
+          }
+        }
       }
 
    }
@@ -36,9 +58,7 @@ const Home = () => {
       {/* <h1> User Login!</h1> */}
       <div
         className="d-flex justify-content-center align-items-center vh-100"
-        style={{
-          // background: "linear-gradient(to right, #8e44ad, #3498db)",
-        }}
+        
       >
         <Card
           className="p-4 shadow"
@@ -46,6 +66,7 @@ const Home = () => {
             width: "100%",
             maxWidth: "400px",
             borderRadius: "10px",
+            border:"1px solid #4ca1af",
           }}
         >
           <h2 className="text-center mb-2">Login</h2>
