@@ -7,7 +7,7 @@ const adminRoute= require("./routes/adminRoutes");
 const userRoute=require("./routes/userRoutes");
 const bodyparser = require('body-parser');
 const port =process.env.PORT ||8000;
-const MNDB=process.env.MGCONN;
+const MNDB=process.env.DBCONN;
 
 app.use(cors());
 app.use(bodyparser.urlencoded({ extended: true }))
