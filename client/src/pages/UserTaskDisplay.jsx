@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
 import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form';
+import {message} from "antd";
 const UserTaskDisplay = () => {
     // const [mydata, setMydata] = useState([]);
     const [mydata, setMydata] = useState([]);
@@ -49,7 +50,7 @@ try {
         let api="http://localhost:8000/user/usertasksubmit";
         const response=await axios.post(api,{taskid:taskid,taskstatus:taskStatus});
         // console.log(response.data)
-        alert(response.data);
+        message.success(response.data);
         loadData();
     } catch (error) {
         console.log(error)
